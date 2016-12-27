@@ -1,0 +1,902 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <title>MineWhat API</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="javascripts/all.js" type="text/javascript"></script>
+
+  </head>
+
+  <body class="index">
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="search">
+          <input type="text" class="search" id="input-search">
+        </div>
+        <div class="search-info"></div>
+      <div id="toc">
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<h2 id="minewhat’s-api">MineWhat’s API</h2>
+
+<p>The MineWhat API is the interface that a developer can use to send or recieve and data from our system. We make periodical updates to the API. See the changelog for more details.</p>
+
+<h2 id="access">Access</h2>
+
+<p>All calls to the API require an access_token that defines the customer making the call. Any registered MineWhat user can get this token from the API settings page on their account</p>
+
+<p>You could use the API to either send transactional data to our servers and increase insight accuracy or you could use it to extract validated data from any of the insights. Please visit the website for more info on product features.</p>
+
+          <h1 id="collection">Collection</h1>
+
+<h2 id="set-customer-email">Set Customer Email</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackUser</span><span class="p">(</span><span class="nx">email_id</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackUser</span><span class="p">(</span><span class="s1">'abc@gmail.com'</span><span class="p">,</span> <span class="p">{</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s1">'premiumuser'</span><span class="p">,</span> <span class="s1">'above60'</span><span class="p">]});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackUser'</span><span class="p">,</span> <span class="nx">email_id</span><span class="p">,</span> <span class="nx">data</span><span class="p">]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackUser'</span><span class="p">,</span> <span class="s1">'abc@gmail.com'</span><span class="p">,</span> <span class="p">{</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="s1">'premiumuser'</span><span class="p">,</span> <span class="s1">'above60'</span><span class="p">]}]);</span>
+</pre>
+
+<p>Users can clear cache and cookies from browser. Help us associate logged in users with their multiple session online by sending user email when he signs in.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email_id</td>
+<td>Email Id of the signed in customer</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>Array of user tags you want us to track</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-product-view-event">Track Product View Event</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'product'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">associated_ids</span><span class="p">:</span> <span class="nx">associated_ids</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'product'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">associated_ids</span><span class="p">:</span> <span class="p">[</span><span class="s1">'YZ1546A'</span><span class="p">]});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'product'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">associated_ids</span><span class="p">:</span> <span class="nx">associated_ids</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'product'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">associated_ids</span><span class="p">:</span> <span class="p">[</span><span class="s1">'YZ1546A'</span><span class="p">]}]);</span>
+</pre>
+
+<p>Send us product view details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product you want us to track</td>
+</tr>
+<tr>
+<td>associated_ids</td>
+<td>The array of associated product ids</td>
+</tr>
+</tbody></table>
+
+<h3 id="associated-ids">Associated IDs</h3>
+
+<p>Array of associated products</p>
+
+<p>Example: [pid1, pid2, &hellip;.]</p>
+
+<h2 id="track-add-to-cart-event">Track Add To Cart Event</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'addtocart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="nx">sku</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="nx">parent_pid</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="nx">qty</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="nx">bundle</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'addtocart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'AB1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'AB1546ASML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">159</span><span class="p">},</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'D1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'D1546AML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">200</span><span class="p">}]});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'addtocart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="nx">sku</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="nx">parent_pid</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="nx">qty</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="nx">bundle</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'addtocart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'AB1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'AB1546ASML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">159</span><span class="p">},</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'D1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'D1546AML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">200</span><span class="p">}]}]);</span>
+</pre>
+
+<p>Send us add to cart details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items remaining in the stock</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h3 id="bundle">Bundle</h3>
+
+<p>Array of individual products incase of bundle product</p>
+
+<p>Example: [{pid: pid, sku: sku, price: price}, &hellip;..]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-remove-from-cart-event">Track Remove From Cart Event</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'removecart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="nx">sku</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="nx">parent_pid</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="nx">qty</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="nx">bundle</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'removecart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'AB1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'AB1546ASML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">159</span><span class="p">},</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'D1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'D1546AML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">200</span><span class="p">}]});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'removecart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="nx">sku</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="nx">parent_pid</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="nx">qty</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="nx">bundle</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'removecart'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'AB1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'AB1546ASML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">159</span><span class="p">},</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'D1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'D1546AML'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">200</span><span class="p">}]}]);</span>
+</pre>
+
+<p>Send us remove from cart details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items remaining in the stock</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h3 id="bundle">Bundle</h3>
+
+<p>Array of individual products incase of bundle product</p>
+
+<p>Example: [{pid: pid, sku: sku, price: price}, &hellip;.]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-cart-info">Track Cart Info</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'bag'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'bag'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}]});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'bag'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'bag'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}]}]);</span>
+</pre>
+
+<p>Send us cart details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>products</td>
+<td>The products inside cart which you want us to track</td>
+</tr>
+</tbody></table>
+
+<h3 id="items">Items</h3>
+
+<p>Array of products in the cart</p>
+
+<p>Example: [{pid: pid, sku: sku, qty: qty, price: price, parent_pid: parent_pid, bundle: bundle}, &hellip;.]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-buy-event">Track Buy Event</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'buy'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'buy'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">revenue</span><span class="p">:</span> <span class="mi">710</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">revenue</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span> <span class="na">discount</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">shipping</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="s1">'2016-05-12 12:00:12 -0400'</span><span class="p">}});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'buy'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'buy'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">revenue</span><span class="p">:</span> <span class="mi">710</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">revenue</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span> <span class="na">discount</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">shipping</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">,</span> <span class="na">created_at</span><span class="p">:</span> <span class="s1">'2016-05-12 12:00:12 -0400'</span><span class="p">}}]);</span>
+</pre>
+
+<p>Send us purchase details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>products</td>
+<td>The list of ordered products you want us to track</td>
+</tr>
+<tr>
+<td>order</td>
+<td>The order details</td>
+</tr>
+</tbody></table>
+
+<h3 id="products">Products</h3>
+
+<p>Array of products bought</p>
+
+<p>Example: [{pid: pid, sku: sku, qty: qty, price: price, parent_pid: parent_pid, bundle: bundle}, &hellip;.]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+<tr>
+<td>revenue</td>
+<td>Total revenue on the product after product level discount</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h3 id="order">Order</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_number</td>
+<td>The unique order number</td>
+</tr>
+<tr>
+<td>revenue</td>
+<td>Total order revenue after cart level discount + shipping charges(if any)</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>Total discount applied on order</td>
+</tr>
+<tr>
+<td>shipping</td>
+<td>Total shipping charge for the order</td>
+</tr>
+<tr>
+<td>payment</td>
+<td>The Payment method used for purchase</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email id of user who made the order</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The time of order in the format YYYY-MM-DD HH:mm:ss ZZ</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-canceled-orders">Track Canceled Orders</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'cancel'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'cancel'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">}});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'cancel'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'cancel'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">}}]);</span>
+</pre>
+
+<p>Send us order cancel details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>products</td>
+<td>The list of products in the canceled order</td>
+</tr>
+<tr>
+<td>order</td>
+<td>The order details</td>
+</tr>
+</tbody></table>
+
+<h3 id="products">Products</h3>
+
+<p>Array of products canceled</p>
+
+<p>Example: [{pid: pid, sku: sku, qty: qty, price: price, parent_pid: parent_pid, bundle: bundle}, &hellip;.]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h3 id="order">Order</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_number</td>
+<td>The unique order number</td>
+</tr>
+<tr>
+<td>payment</td>
+<td>The Payment method used for purchase</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email id of user who requested order cancel</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-returns">Track Returns</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'return'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'return'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">}});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'return'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="nx">products</span><span class="p">,</span> <span class="na">order</span><span class="p">:</span> <span class="nx">order</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'return'</span><span class="p">,</span> <span class="p">{</span><span class="na">products</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">qty</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">,</span> <span class="na">parent_pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">bundle</span><span class="p">:</span> <span class="p">[{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546A'</span><span class="p">,</span> <span class="na">sku</span><span class="p">:</span> <span class="s1">'YZ1546ALRG'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">359</span><span class="p">}]}],</span> <span class="na">order</span><span class="p">:</span> <span class="p">{</span><span class="na">order_number</span><span class="p">:</span> <span class="s1">'ABDFGERSA123'</span><span class="p">,</span> <span class="na">payment</span><span class="p">:</span> <span class="s1">'cod'</span><span class="p">,</span> <span class="na">email</span><span class="p">:</span> <span class="s1">'abc@gmail.com'</span><span class="p">}}]);</span>
+</pre>
+
+<p>Send us product return details. It will help us provide you with better analysis.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>products</td>
+<td>The list of products returned</td>
+</tr>
+<tr>
+<td>order</td>
+<td>The order details</td>
+</tr>
+</tbody></table>
+
+<h3 id="products">Products</h3>
+
+<p>Array of products returned</p>
+
+<p>Example: [{pid: pid, sku: sku, qty: qty, price: price, parent_pid: parent_pid, bundle: bundle}, &hellip;.]</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product of the product you want us to track</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>The sku of the item</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>The quantity of items</td>
+</tr>
+<tr>
+<td>price</td>
+<td>The price of product</td>
+</tr>
+<tr>
+<td>parent_pid</td>
+<td>Parent Product ID. The unique identifier of the parent product(incase of variant products) you want us to track</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>The array of items in bundle</td>
+</tr>
+</tbody></table>
+
+<h3 id="order">Order</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_number</td>
+<td>The unique order number</td>
+</tr>
+<tr>
+<td>payment</td>
+<td>The Payment method used for purchase</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The email id of user who made the return</td>
+</tr>
+</tbody></table>
+
+<h2 id="track-product-custom-event">Track Product Custom Event</h2>
+
+<blockquote>
+<p>SDK js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'custom'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">metric</span><span class="p">:</span> <span class="nx">metric</span><span class="p">,</span> <span class="na">attribute</span><span class="p">:</span> <span class="nx">attribute</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">});</span>
+
+<span class="nx">Example</span> <span class="nx">MWSDK</span><span class="p">.</span><span class="nx">trackEvent</span><span class="p">(</span><span class="s1">'custom'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">metric</span><span class="p">:</span> <span class="s1">'quickview'</span><span class="p">,</span> <span class="na">attribute</span><span class="p">:</span> <span class="p">{</span><span class="na">collection</span><span class="p">:</span> <span class="s1">'50%SALE_PAGE'</span><span class="p">},</span> <span class="na">url</span><span class="p">:</span> <span class="s1">'www.yourstore.com/pid/12'</span><span class="p">});</span>
+</pre>
+
+<blockquote>
+<p>Script js:</p>
+</blockquote>
+<pre class="highlight javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">_mwapi</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'custom'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span> <span class="na">metric</span><span class="p">:</span> <span class="nx">metric</span><span class="p">,</span> <span class="na">attribute</span><span class="p">:</span> <span class="nx">attribute</span><span class="p">,</span> <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">}]);</span>
+
+<span class="nx">Example</span> <span class="nx">_mwapi</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="s1">'trackEvent'</span><span class="p">,</span> <span class="s1">'custom'</span><span class="p">,</span> <span class="p">{</span><span class="na">pid</span><span class="p">:</span> <span class="s1">'YZ1546'</span><span class="p">,</span> <span class="na">metric</span><span class="p">:</span> <span class="s1">'quickview'</span><span class="p">,</span> <span class="na">attribute</span><span class="p">:</span> <span class="p">{</span><span class="na">collection</span><span class="p">:</span> <span class="s1">'50%SALE_PAGE'</span><span class="p">},</span> <span class="na">url</span><span class="p">:</span> <span class="s1">'www.yourstore.com/pid/12'</span><span class="p">}]);</span>
+</pre>
+
+<p>Send us custom events to track.</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pid</td>
+<td>Product ID. The unique identifier of the product you want us to track</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>Custom metric you want us to track</td>
+</tr>
+<tr>
+<td>attribute</td>
+<td>Custom attribute you want us to track</td>
+</tr>
+<tr>
+<td>url</td>
+<td>The product url</td>
+</tr>
+</tbody></table>
+
+<h3 id="attribute">Attribute</h3>
+
+<p>Object containing attribute and attribute value mapping.</p>
+
+<p>Example: {&lsquo;collection&rsquo;: &lsquo;50%SALE_PAGE&rsquo;}</p>
+
+          <h1 id="automation">Automation</h1>
+
+<h2 id="get-list-of-insights">Get List of Insights</h2>
+
+<blockquote>
+<p>API shell:</p>
+</blockquote>
+<pre class="highlight shell">curl -H <span class="s2">"MW-Token: &lt;apikey&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET https://api.minewhat.com/v1/insights?domain<span class="o">=</span>&lt;domain_key&gt;
+
+Example:
+curl -H <span class="s2">"MW-Token: 123456ab78cd9e01"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET https://api.minewhat.com/v1/insights?domain<span class="o">=</span>sandbox_sandbox
+
+Response:
+<span class="o">{</span>status: <span class="s2">"ok"</span>, data: <span class="o">{</span>insights: <span class="o">[{</span>id: <span class="s2">"52eb4b1b8b7a5800000002cd"</span>, name: <span class="s2">"Products under Designer Collection that were viewed via search more often"</span>, metric: <span class="s2">"searchviews"</span>, order: <span class="s2">"topk"</span><span class="o">}</span>, ...]<span class="o">}}</span>
+</pre>
+
+<p>You can get all the insights you have created or system created with this API.</p>
+
+<h3 id="filters">Filters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>domain</td>
+<td>domain key</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>views/purchases/revenue/avgtimespent/conversionrate(optional)</td>
+</tr>
+<tr>
+<td>order</td>
+<td>topk/leastk(optional)</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<p>Response of an insight list call</p>
+
+<p>{status: &ldquo;ok&rdquo;, data: {insights: [{id: id, name: name, metric: metric, order: order}, &hellip;]}}</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The exact id of the Insight</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of the insight,</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>The metric of the insight</td>
+</tr>
+<tr>
+<td>order</td>
+<td>topk/leastk</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-items-of-an-insight">Get Items of an Insight</h2>
+
+<blockquote>
+<p>API shell:</p>
+</blockquote>
+<pre class="highlight shell">curl -H <span class="s2">"MW-Token: &lt;apikey&gt;"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET http://api.minewhat.com/v1/insights/&lt;insightid&gt;?domain<span class="o">=</span>&lt;domain_key&gt;
+
+Example:
+curl -H <span class="s2">"MW-Token: 123456ab78cd9e01"</span> -H <span class="s2">"Content-Type: application/json"</span> -X GET http://api.minewhat.com/v1/insights/52eb4b1b8b7a5800000002cd?domain<span class="o">=</span>sandbox_sandbox
+
+Response:
+<span class="o">{</span>status: <span class="s2">"ok"</span>, data: <span class="o">{</span>id: <span class="s2">"52eb4b1b8b7a5800000002cd"</span> , name: <span class="s2">"Most Converting Products From Mobile"</span> , metric: <span class="s2">"conversionrate"</span>, order: <span class="s2">"topk"</span>, itemtype: <span class="s2">"products"</span>, date: <span class="o">{</span>fromDate: <span class="s2">"2014-08-14"</span>, toDate: <span class="s2">"2014-08-20"</span>, dataValidFrom: <span class="s2">"2014-08-01"</span>, dataValidTo: <span class="s2">"2014-08-25"</span>, format: <span class="s2">"YYYY-MM-DD"</span><span class="o">}</span>, insight: <span class="o">{</span><span class="s2">"all-items"</span>: <span class="o">[{</span>id: <span class="s2">"AX12"</span>, name: <span class="s2">"Blue Jeans"</span>, price: <span class="s2">"</span><span class="nv">$99</span><span class="s2">"</span>, brand: <span class="s2">"dkny"</span>, brandid: 56, categories: <span class="o">[</span><span class="s2">"men"</span>, <span class="s2">"jeans"</span><span class="o">]</span>, categoryids: <span class="o">[</span>2, 34], m1: 2045, m2: 26, m3: 2574, m4: <span class="s2">"1.27%"</span>, m5: 25<span class="o">}</span>, ...]<span class="o">}</span>, metricnames: <span class="o">{</span>m1name: <span class="s2">"Views"</span>, m2name: <span class="s2">"Purchases"</span>, m3name: <span class="s2">"Revenue"</span>, m4name: <span class="s2">"Conversion rate"</span>, m5name: <span class="s2">"Avg. Time Spent"</span><span class="o">}}}</span>
+</pre>
+
+<p>You can get all the items of the insights so that you can connect back to any automation systems like Email, Landing Page automation etc</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Unique identifier of the insight (obtained with insight list api)</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>domain key</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<p>Response of an insight call </p>
+
+<p>{status: &ldquo;ok&rdquo;, data: {id: ins_id , name: ins_name , metric: metric, order: order, itemtype: itemtype, date: {fromDate: fromDate, toDate: toDate, dataValidFrom: dataValidFrom, dataValidTo: dataValidTo, format: &ldquo;YYYY-MM-DD&rdquo;}, insight: {&ldquo;ins_group&rdquo;: [{id: product_id, name: product_name, price: price, brand: brand, brandid: brandid, categories: categories, categoryids: categoryids, m1: m1, m2: m2, m3: m3, m4: m4, m5: m5}, &hellip;]}, metricnames: {m1name: m1name, m2name: m2name, m3name: m3name, m4name: m4name, m5name: m5name}}}</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ins_id</td>
+<td>Unique identifier of the insight</td>
+</tr>
+<tr>
+<td>ins_name</td>
+<td>Name of Insight</td>
+</tr>
+<tr>
+<td>metric</td>
+<td>views/purchases/revenue/avgtimespent/conversionrate</td>
+</tr>
+<tr>
+<td>order</td>
+<td>topk/leastk</td>
+</tr>
+<tr>
+<td>itemtype</td>
+<td>products/brands/category</td>
+</tr>
+<tr>
+<td>product_id</td>
+<td>Unique identifier of the insight.</td>
+</tr>
+<tr>
+<td>product_name</td>
+<td>Name of the product</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>Brand name</td>
+</tr>
+<tr>
+<td>brandid</td>
+<td>Brand ID</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>Category list</td>
+</tr>
+<tr>
+<td>categoryids</td>
+<td>Category ID list</td>
+</tr>
+<tr>
+<td>m1name&hellip;m5name</td>
+<td>Metric names</td>
+</tr>
+<tr>
+<td>m1&hellip;m5</td>
+<td>Metric values</td>
+</tr>
+<tr>
+<td>date</td>
+<td>The date object for which above metric were achieved</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
